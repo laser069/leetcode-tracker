@@ -1,0 +1,15 @@
+// Last updated: 3/26/2026, 1:25:38 PM
+class Solution {
+public:
+int dfs(vector<int> &nums ,int i ,int xors){
+    if(i == nums.size()){
+        return xors;
+    }
+    int x = dfs(nums,i+1,xors);
+    int y = dfs(nums,i+1,nums[i]^xors);
+    return x+y;
+}
+    int subsetXORSum(vector<int>& nums) {
+        return dfs(nums,0,0);
+    }
+};

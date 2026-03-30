@@ -1,32 +1,29 @@
-// Last updated: 3/30/2026, 3:13:45 PM
+// Last updated: 3/30/2026, 4:59:12 PM
 1class Solution {
 2public:
-3    bool isVowel(char c){
-4        char ch = tolower(c);
-5        return ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u';
-6    }
-7    string reverseVowels(string s) {
-8        int n = s.size();
-9        int l = 0;
-10        int r = n-1;
-11
-12        while(l<r){
-13            if(isVowel(s[l]) && isVowel(s[r])){
-14                char temp = s[l];
-15                s[l] = s[r];
-16                s[r] = temp;
-17                r--;
-18                l++;
-19            }
-20            else if(isVowel(s[l]) && !isVowel(s[r])){
-21                r--;
-22            }else if(isVowel(s[r]) && !isVowel(s[l])){
-23                l++;
-24            }else{
-25                r--;
-26                l++;
-27            }
-28        }
-29        return s;
-30    }
-31};
+3    string reverseWords(string s) {
+4        vector<string> words;
+5        int i = 0;
+6        int j = 0;
+7        int n = s.size();
+8        
+9        while(i<n){
+10        while(i<n && s[i] == ' ')i++;
+11        if(i>=n)break;
+12        j = i;
+13        while(j<n&&s[j]!=' ')j++;
+14        words.push_back(s.substr(i,j-i));
+15        i = j;
+16        }
+17        string ans = "";
+18        int m = words.size();
+19        for(int k = m-1;k>=0;k--){
+20            ans+=words[k];
+21            if(k!=0){
+22            ans+=' ';
+23            }
+24        }
+25        return ans;
+26
+27    }
+28};
